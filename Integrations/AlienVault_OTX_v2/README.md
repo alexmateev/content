@@ -327,13 +327,6 @@
         "Name": "google.com"
     }
 }
-</pre>
-<h5>Human Readable Output</h5>
-<p>
-<h3>AlienVault OTX v2 - Results for Domain query</h3>
-<table style="width:750px" border="2" cellpadding="6">
-  <thead>
-    <tr>
       <th><strong>Alexa</strong></th>
       <th><strong>Name</strong></th>
       <th><strong>Whois</strong></th>
