@@ -656,7 +656,7 @@ def main():
     password = secret_conf.get('userPassword') if not password else password
 
     tests = conf['tests']
-    skipped_integrations_conf = conf['skipped_integrations']
+    skipped_integrations_conf = {**conf['skipped_integrations'], **conf['skipped_tests']}
     all_module_instances = []
 
     filtered_tests, filter_configured, run_all_tests = extract_filtered_tests(is_nightly=options.is_nightly)
