@@ -42,7 +42,7 @@ def test_get_indicators():
             feed_url_to_config=feed_type
         )
         args['indicator_type'] = 'ASN'
-        hr, _, raw_json = get_indicators_command(client, args)
+        _, _, raw_json = get_indicators_command(client, args)
         for ind_json in raw_json:
             ind_val = ind_json.get('value')
             ind_type = ind_json.get('type')
@@ -91,7 +91,7 @@ def test_get_indicators_json_params():
             indicator_type='ASN'
         )
         args['indicator_type'] = 'ASN'
-        hr, _, raw_json = get_indicators_command(client, args)
+        _, _, raw_json = get_indicators_command(client, args)
         for ind_json in raw_json:
             ind_val = ind_json.get('value')
             ind_type = ind_json.get('type')
@@ -137,3 +137,17 @@ def test_datestring_to_millisecond_timestamp():
     assert 1581341954000 == datestring_to_millisecond_timestamp(datesting5)
     assert 1581341954123 == datestring_to_millisecond_timestamp(datesting3)
     assert 1581341954123 == datestring_to_millisecond_timestamp(datesting4)
+
+
+def test_get_feed_config():
+    custom_fields_mapping = {
+        "old_field1": "new_field1",
+        "old_field2": "new_field2"
+    }
+    client = Client(
+        url="https://www.spamhaus.org/drop/asndrop.txt",
+        feed_url_to_config="some_stuff",
+        custom_fields_mapping=custom_fields_mapping
+    )
+    # Check that if an empty .get_feed_config is called, an empty dict returned
+    assert {} == client.get_feed_config()

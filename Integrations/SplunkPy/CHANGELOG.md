@@ -1,4 +1,12 @@
 ## [Unreleased]
+- Added the **Replace with Underscore in Incident Fields** parameter key, which replaces problematic characters (e.g., ".") with underscores ("\_") in context keys.
+- Added ***First fetch timestamp*** parameter which indicates from which date and time should incidents be fetched.
+- Fixed an issue where ***splunk-search*** presented the table headers in alphabetical order instead of the query order.
+
+## [20.3.3] - 2020-03-18
+Fixed an issue in the test command, which caused an out of memory error. 
+
+## [20.3.1] - 2020-03-04
 - Fixed an issue where ***fetch-incidents*** did not work as intended.
 - Fixed an issue where ***splunk-parse-raw*** cut the last character of parsed fields.
 

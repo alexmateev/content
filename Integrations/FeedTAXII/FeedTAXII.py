@@ -8,6 +8,7 @@ from CommonServerUserPython import *
 import urllib3
 import collections
 
+import cabby
 import requests
 from lxml import etree
 import dateutil.parser
@@ -33,6 +34,7 @@ class AddressObject(object):
     Implements address object indicator decoding
     based on: https://stixproject.github.io/data-model/1.2/AddressObj/AddressObjectType/
     """
+
     @staticmethod
     def decode(props, **kwargs):
         indicator = props.find('Address_Value')
@@ -76,6 +78,7 @@ class DomainNameObject(object):
     Implements domain object indicator decoding
     based on: https://stixproject.github.io/data-model/1.2/DomainNameObj/DomainNameObjectType/
     """
+
     @staticmethod
     def decode(props, **kwargs):
         dtype = props.get('type', 'FQDN')
@@ -97,6 +100,7 @@ class FileObject(object):
     Implements file object indicator decoding
     based on: https://stixproject.github.io/data-model/1.2/FileObj/FileObjectType/
     """
+
     @staticmethod
     def _decode_basic_props(props):
         result = {}
@@ -158,6 +162,7 @@ class URIObject(object):
     Implements URI object indicator decoding
     based on: https://stixproject.github.io/data-model/1.2/URIObj/URIObjectType/
     """
+
     @staticmethod
     def decode(props, **kwargs):
         utype = props.get('type', 'URL')
@@ -183,6 +188,7 @@ class SocketAddressObject(object):
     Implements socket address object indicator decoding
     based on: https://stixproject.github.io/data-model/1.2/SocketAddressObj/SocketAddressObjectType/
     """
+
     @staticmethod
     def decode(props, **kwargs):
         ip = props.get('ip_address', None)
@@ -196,6 +202,7 @@ class LinkObject(object):
     Implements link object indicator decoding
     based on: https://stixproject.github.io/data-model/1.2/LinkObj/LinkObjectType/
     """
+
     @staticmethod
     def decode(props, **kwargs):
         ltype = props.get('type', 'URL')
@@ -222,6 +229,7 @@ class HTTPSessionObject(object):
     Implements http session object indicator decoding
     based on: https://stixproject.github.io/data-model/1.2/HTTPSessionObj/HTTPSessionObjectType/
     """
+
     @staticmethod
     def decode(props, **kwargs):
         if 'http_request_response' in props.keys():
@@ -461,8 +469,8 @@ class Taxii11(object):
 
 class TAXIIClient(object):
     def __init__(self, insecure: bool = True, polling_timeout: int = 20, initial_interval: str = '1 day',
-                 discovery_service: str = '', poll_service: str = None, collection: str = None, api_key: str = None,
-                 api_header: str = None, credentials: dict = None, **kwargs):
+                 discovery_service: str = '', poll_service: str = None, collection: str = None,
+                 credentials: dict = None, **kwargs):
         """
         TAXII Client
         :param insecure: Set to true to ignore https certificate
@@ -471,8 +479,6 @@ class TAXIIClient(object):
         :param discovery_service: TAXII server discovery service
         :param poll_service: TAXII poll service
         :param collection: TAXII collection
-        :param api_key: TAXII server API key
-        :param api_header: TAXII server API key header
         :param credentials: Username and password dict for basic auth
         :param kwargs:
         """
@@ -497,13 +503,53 @@ class TAXIIClient(object):
         self.poll_service = poll_service
         self.collection = collection
 
+        self.api_key = None
+        self.api_header = None
+        self.username = None
+        self.password = None
+
         # authentication
-        self.api_key = api_key
-        self.api_header = api_header
-        if not credentials:
-            credentials = {}
-        self.username = credentials.get('identifier', None)
-        self.password = credentials.get('password', None)
+        if credentials:
+            if '_header:' in credentials.get('identifier', None):
+                self.api_header = credentials.get('identifier', None).split('_header:')[1]
+                self.api_key = credentials.get('password', None)
+            else:
+                self.username = credentials.get('identifier', None)
+                self.password = credentials.get('password', None)
+
+        if collection is None or collection == '':
+            all_collections = self.get_all_collections()
+            return_error(f"No collection set. Here is a list of all accessible collections: "
+                         f"{str(all_collections)}")
+
+    def get_all_collections(self, is_raise_error=False):
+        """Gets a list of all collections listed in the discovery service instance.
+
+        Args:
+            is_raise_error(bool): Whether to raise an error when one occurs.
+
+        Returns:
+            list. A list of all collection names in discovery service.
+        """
+        if self.discovery_service:
+            taxii_client = cabby.create_client(discovery_path=self.discovery_service)
+            if self.username:
+                taxii_client.set_auth(username=str(self.username), password=self.password, verify_ssl=self.verify_cert)
+            elif self.api_key:
+                taxii_client.set_auth(username=str(self.api_key), verify_ssl=self.verify_cert)
+            else:
+                taxii_client.set_auth(verify_ssl=self.verify_cert)
+
+            try:
+                all_collections = taxii_client.get_collections()
+            except Exception as e:
+                if is_raise_error:
+                    raise ConnectionError()
+                return_error(f'{INTEGRATION_NAME} - An error occurred when trying to fetch available collections.\n{e}')
+
+            return [collection.name for collection in all_collections]
+
+        return []
 
     def _send_request(self, url, headers, data, stream=False):
         if self.api_key is not None and self.api_header is not None:
@@ -889,7 +935,16 @@ def interval_in_sec(val):
     return None
 
 
-def test_module(client, args):
+def test_module(client):
+    try:
+        all_collections = client.get_all_collections(is_raise_error=True)
+    except ConnectionError:
+        all_collections = [client.collection]
+
+    if client.collection not in all_collections:
+        return_error(f'Collection could not be found at this time. Here is a list of all accessible collections:'
+                     f' {str(all_collections)}')
+
     client._discover_poll_service()
     return 'ok', {}, {}
 
@@ -939,7 +994,7 @@ def main():
                 demisto.createIndicators(b)
             demisto.setLastRun({'time': client.last_taxii_run})
         else:
-            readable_output, outputs, raw_response = commands[command](client, demisto.args())
+            readable_output, outputs, raw_response = commands[command](client, demisto.args())  # type: ignore
             return_outputs(readable_output, outputs, raw_response)
     except Exception as e:
         err_msg = f'Error in {INTEGRATION_NAME} Integration [{e}]'

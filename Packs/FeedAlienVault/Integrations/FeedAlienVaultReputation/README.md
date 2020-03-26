@@ -6,9 +6,10 @@ Use the AlienVault Reputation feed integration to fetch indicators from the feed
 1. Navigate to __Settings__ > __Integrations__ > __Servers & Services__.
 2. Search for AlienVault Reputation Feed.
 3. Click __Add instance__ to create and configure a new integration instance.
+
    | Parameter | Description | Example |
    | --- | --- | ---| 
-   | Name | A meaningful name for the integration instance. | alientvault_domain |
+   | Name | A meaningful name for the integration instance. | alienvault_domain |
    | Fetch indicators | Select this check box to fetch indicators. | N/A |
    | Indicator Reputation | The reputation applied to indicators from this integration instance. The default value is Bad. | N/A |
    | Source Reliability | Reliability of the source providing the intelligence data. The default value is C - Fairly reliable | N/A |
