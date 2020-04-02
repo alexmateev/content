@@ -1,0 +1,26 @@
+{
+    "name": "IP Enrichment - External - Generic v2",
+    "description": "Enrich External IP addresses using one or more integrations.",
+    "support": "Cortex XSOAR",
+    "serverMinVersion": "4.1.0",
+    "currentVersion": "1.0.0",
+    "author": "Cortex XSOAR",
+    "url": "https://www.paloaltonetworks.com/cortex",
+    "email": "",
+    "categories": [
+        "Data Enrichment & Threat Intelligence"
+    ],
+    "tags": [
+        "IP",
+        "Enrichment"
+    ],
+    "created": "2020-04-02T12:16:18Z",
+    "updated": "2020-04-02T12:16:18Z",
+    "beta": false,
+    "deprecated": false,
+    "certification": "certified",
+    "useCases": [],
+    "keywords": [],
+    "price": "0",
+    "dependencies": {}
+}
