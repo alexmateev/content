@@ -634,7 +634,8 @@ def main():
     file_validator = FilesValidator()
     try:
         change_log = run_command('git diff --name-status {}'.format(args.git_sha1), exit_on_error=False)
-    except RuntimeError:
+    except RuntimeError as exp:
+        print(str(exp))  # for debug - will be removed
         print_error('Unable to get the SHA1 of the commit in which the version was released. This can happen if your '
                     'branch is not updated with origin master. Merge from origin master and, try again.\n'
                     'If you\'re not on a fork, run "git merge origin/master".\n'
