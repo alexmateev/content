@@ -182,462 +182,462 @@
           {
             "references": [
               {
-                "fragment": "dani.rachmat@outlook.com|1qazse4r",
+                "fragment": "example.gmail.com|1qazse4r",
                 "entities": [
                   {
-                    "id": "email:dani.rachmat@outlook.com",
-                    "name": "dani.rachmat@outlook.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "angela_mercy9@hotmail.com|snapy573",
+                "fragment": "example.gmail.com|snapy573",
                 "entities": [
                   {
-                    "id": "email:angela_mercy9@hotmail.com",
-                    "name": "angela_mercy9@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "rico_sugiarto@hotmail.com|ric290888",
+                "fragment": "example.gmail.com|ric290888",
                 "entities": [
                   {
-                    "id": "email:rico_sugiarto@hotmail.com",
-                    "name": "rico_sugiarto@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "mario.purwadi@outlook.com|cumicumi49",
+                "fragment": "example.gmail.com|cumicumi49",
                 "entities": [
                   {
-                    "id": "email:mario.purwadi@outlook.com",
-                    "name": "mario.purwadi@outlook.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "pure_licia@hotmail.com|20may1993",
+                "fragment": "example.gmail.com|20may1993",
                 "entities": [
                   {
-                    "id": "email:pure_licia@hotmail.com",
-                    "name": "pure_licia@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "niwandayogiswara@hotmail.com|04041995",
+                "fragment": "example.gmail.com|04041995",
                 "entities": [
                   {
-                    "id": "email:niwandayogiswara@hotmail.com",
-                    "name": "niwandayogiswara@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "Leonny93@hotmail.com|lk63864551",
+                "fragment": "example.gmail.com|lk63864551",
                 "entities": [
                   {
-                    "id": "email:leonny93@hotmail.com",
-                    "name": "leonny93@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "sheryl_simon@hotmail.com|mememesheryl",
+                "fragment": "example.gmail.com|mememesheryl",
                 "entities": [
                   {
-                    "id": "email:sheryl_simon@hotmail.com",
-                    "name": "sheryl_simon@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "kazanda@outlook.com|danubrata45",
+                "fragment": "example.gmail.com|danubrata45",
                 "entities": [
                   {
-                    "id": "email:kazanda@outlook.com",
-                    "name": "kazanda@outlook.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "peteralimin777@hotmail.com|miracles7",
+                "fragment": "example.gmail.com|miracles7",
                 "entities": [
                   {
-                    "id": "email:peteralimin777@hotmail.com",
-                    "name": "peteralimin777@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "orange_monkey31@hotmail.com|albert",
+                "fragment": "example.gmail.com|albert",
                 "entities": [
                   {
-                    "id": "email:orange_monkey31@hotmail.com",
-                    "name": "orange_monkey31@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "samuel.ivan98@icloud.com|14Oktober1998",
+                "fragment": "example.gmail.com|14Oktober1998",
                 "entities": [
                   {
-                    "id": "email:samuel.ivan98@icloud.com",
-                    "name": "samuel.ivan98@icloud.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "jessica.sek@hotmail.com|1234qwer",
+                "fragment": "example.gmail.com|1234qwer",
                 "entities": [
                   {
-                    "id": "email:jessica.sek@hotmail.com",
-                    "name": "jessica.sek@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "alfred.dwitama@hotmail.com|dwitamaalfred",
+                "fragment": "example.gmail.com|dwitamaalfred",
                 "entities": [
                   {
-                    "id": "email:alfred.dwitama@hotmail.com",
-                    "name": "alfred.dwitama@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "olivia_agnes_13@hotmail.com|oliviaagnes",
+                "fragment": "example.gmail.com|oliviaagnes",
                 "entities": [
                   {
-                    "id": "email:olivia_agnes_13@hotmail.com",
-                    "name": "olivia_agnes_13@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "Mandala_888@hotmail.com|5148520362",
+                "fragment": "example.gmail.com|5148520362",
                 "entities": [
                   {
-                    "id": "email:mandala_888@hotmail.com",
-                    "name": "mandala_888@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "syl_via@hotmail.com|kucit11",
+                "fragment": "example.gmail.com|kucit11",
                 "entities": [
                   {
-                    "id": "email:syl_via@hotmail.com",
-                    "name": "syl_via@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "maghran.tanjung@icloud.com|n1kuailema",
+                "fragment": "example.gmail.com|n1kuailema",
                 "entities": [
                   {
-                    "id": "email:maghran.tanjung@icloud.com",
-                    "name": "maghran.tanjung@icloud.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "alifa_azhari@hotmail.com|limajuli",
+                "fragment": "example.gmail.com|limajuli",
                 "entities": [
                   {
-                    "id": "email:alifa_azhari@hotmail.com",
-                    "name": "alifa_azhari@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "kevin-051198@windowslive.com|tasyakevinrio",
+                "fragment": "example.gmail.com|tasyakevinrio",
                 "entities": [
                   {
-                    "id": "email:kevin-051198@windowslive.com",
-                    "name": "kevin-051198@windowslive.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "rizkie74@hotmail.com|747474",
+                "fragment": "example.gmail.com|747474",
                 "entities": [
                   {
-                    "id": "email:rizkie74@hotmail.com",
-                    "name": "rizkie74@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "leman.ivana@hotmail.com|sanurlovers",
+                "fragment": "example.gmail.com|sanurlovers",
                 "entities": [
                   {
-                    "id": "email:leman.ivana@hotmail.com",
-                    "name": "leman.ivana@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "syariar.ilham@hotmail.com|bologe10101994",
+                "fragment": "example.gmail.com|bologe10101994",
                 "entities": [
                   {
-                    "id": "email:syariar.ilham@hotmail.com",
-                    "name": "syariar.ilham@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "marcohutterer@hotmail.com|flymuc12",
+                "fragment": "example.gmail.com|flymuc12",
                 "entities": [
                   {
-                    "id": "email:marcohutterer@hotmail.com",
-                    "name": "marcohutterer@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "donnie.fernando@hotmail.com|donnie",
+                "fragment": "example.gmail.com|donnie",
                 "entities": [
                   {
-                    "id": "email:donnie.fernando@hotmail.com",
-                    "name": "donnie.fernando@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "shir_gy@hotmail.com|g153ll3",
+                "fragment": "example.gmail.com|g153ll3",
                 "entities": [
                   {
-                    "id": "email:shir_gy@hotmail.com",
-                    "name": "shir_gy@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "harry.marojahan@outlook.com|kolonel8",
+                "fragment": "example.gmail.com|kolonel8",
                 "entities": [
                   {
-                    "id": "email:harry.marojahan@outlook.com",
-                    "name": "harry.marojahan@outlook.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "nova_hadiman@hotmail.com|Na11032009",
+                "fragment": "example.gmail.com|Na11032009",
                 "entities": [
                   {
-                    "id": "email:nova_hadiman@hotmail.com",
-                    "name": "nova_hadiman@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "markus_159@hotmail.com|gogle05",
+                "fragment": "example.gmail.com|gogle05",
                 "entities": [
                   {
-                    "id": "email:markus_159@hotmail.com",
-                    "name": "markus_159@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "wahanacikini@outlook.com|my9snapy",
+                "fragment": "example.gmail.com|my9snapy",
                 "entities": [
                   {
-                    "id": "email:wahanacikini@outlook.com",
-                    "name": "wahanacikini@outlook.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "bani_iboow@hotmail.com|bani2005",
+                "fragment": "example.gmail.com|bani2005",
                 "entities": [
                   {
-                    "id": "email:bani_iboow@hotmail.com",
-                    "name": "bani_iboow@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "amalea_25@outlook.com|mala2581998",
+                "fragment": "example.gmail.com|mala2581998",
                 "entities": [
                   {
-                    "id": "email:amalea_25@outlook.com",
-                    "name": "amalea_25@outlook.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "awanandi@hotmail.com|961501",
+                "fragment": "example.gmail.com|961501",
                 "entities": [
                   {
-                    "id": "email:awanandi@hotmail.com",
-                    "name": "awanandi@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "velisya_kenanga@hotmail.com|april322912",
+                "fragment": "example.gmail.com|april322912",
                 "entities": [
                   {
-                    "id": "email:velisya_kenanga@hotmail.com",
-                    "name": "velisya_kenanga@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "davidtio_@hotmail.com|dalshabet2012",
+                "fragment": "example.gmail.com|dalshabet2012",
                 "entities": [
                   {
-                    "id": "email:davidtio_@hotmail.com",
-                    "name": "davidtio_@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "vichakecil@hotmail.com|vicha1002",
+                "fragment": "example.gmail.com|vicha1002",
                 "entities": [
                   {
-                    "id": "email:vichakecil@hotmail.com",
-                    "name": "vichakecil@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "edward_wemwem@hotmail.com|0811570188",
+                "fragment": "example.gmail.com|0811570188",
                 "entities": [
                   {
-                    "id": "email:edward_wemwem@hotmail.com",
-                    "name": "edward_wemwem@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "Fajararifan@hotmail.com|amidala7",
+                "fragment": "example.gmail.com|amidala7",
                 "entities": [
                   {
-                    "id": "email:fajararifan@hotmail.com",
-                    "name": "fajararifan@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "calvinchookw@hotmail.com|janand",
+                "fragment": "example.gmail.com|janand",
                 "entities": [
                   {
-                    "id": "email:calvinchookw@hotmail.com",
-                    "name": "calvinchookw@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "septhiriachandra@hotmail.com|cheptie",
+                "fragment": "example.gmail.com|cheptie",
                 "entities": [
                   {
-                    "id": "email:septhiriachandra@hotmail.com",
-                    "name": "septhiriachandra@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "d_indrianti@hotmail.com|Dealova33",
+                "fragment": "example.gmail.com|Dealova33",
                 "entities": [
                   {
-                    "id": "email:d_indrianti@hotmail.com",
-                    "name": "d_indrianti@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "jessicasantoso23@hotmail.com|jss231094",
+                "fragment": "example.gmail.com|jss231094",
                 "entities": [
                   {
-                    "id": "email:jessicasantoso23@hotmail.com",
-                    "name": "jessicasantoso23@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
@@ -655,66 +655,66 @@
                 "language": "eng"
               },
               {
-                "fragment": "suyanto82@hotmail.com|burlgoat97",
+                "fragment": "example.gmail.com|burlgoat97",
                 "entities": [
                   {
-                    "id": "email:suyanto82@hotmail.com",
-                    "name": "suyanto82@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "smookey_80@hotmail.com|Ahau7296",
+                "fragment": "example.gmail.com|Ahau7296",
                 "entities": [
                   {
-                    "id": "email:smookey_80@hotmail.com",
-                    "name": "smookey_80@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "mr.z.82@hotmail.com|gilaabis",
+                "fragment": "example.gmail.com|gilaabis",
                 "entities": [
                   {
-                    "id": "email:mr.z.82@hotmail.com",
-                    "name": "mr.z.82@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "peshdog@hotmail.com|123456",
+                "fragment": "example.gmail.com|123456",
                 "entities": [
                   {
-                    "id": "email:peshdog@hotmail.com",
-                    "name": "peshdog@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "tiffz_gemini@hotmail.com|Tiffani16694",
+                "fragment": "example.gmail.com|Tiffani16694",
                 "entities": [
                   {
-                    "id": "email:tiffz_gemini@hotmail.com",
-                    "name": "tiffz_gemini@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
                 "language": "eng"
               },
               {
-                "fragment": "andri.sukma@hotmail.com|4ndr15ukm4v4r094",
+                "fragment": "example.gmail.com|4ndr15ukm4v4r094",
                 "entities": [
                   {
-                    "id": "email:andri.sukma@hotmail.com",
-                    "name": "andri.sukma@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],
@@ -732,11 +732,11 @@
           {
             "references": [
               {
-                "fragment": "| [+] E-mail Found: mathewhendry@hotmail.com",
+                "fragment": "| [+] E-mail Found: example.gmail.com",
                 "entities": [
                   {
-                    "id": "email:mathewhendry@hotmail.com",
-                    "name": "mathewhendry@hotmail.com",
+                    "id": "email:example.gmail.com",
+                    "name": "example.gmail.com",
                     "type": "EmailAddress"
                   }
                 ],

@@ -228,7 +228,7 @@
             "Products_Brand": "Alternative",
             "Products_ItemName": "Alternative Women's Alice Drop Shoulder V-Neck",
             "Users_Name": "Chelsea Mccormick",
-            "Users_Email": "cmccormick@gmail.com"
+            "Users_Email": "example@gmail.com"
         }, 
         {
             "OrderItems_Id": 63757,
@@ -239,7 +239,7 @@
             "Products_Brand": "Lucky Brand",
             "Products_ItemName": "Lucky Brand Women's Plus-Size Moroccan Medallion Tee",
             "Users_Name": "Darrell Nelson",
-            "Users_Email": "darrellnelson@aol.com"
+            "Users_Email": "example@aol.com"
         }
     ]
 }

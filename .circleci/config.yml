@@ -111,29 +111,29 @@ jobs:
             python3 -m pytest ./Tests/scripts/infrastructure_tests/test_configure_tests.py -v
             python3 -m pytest ./Tests/Marketplace/Tests/marketplace_services_test.py -v
             python3 -m pytest ./Tests/Marketplace/Tests/upload_packs_test.py -v
-      - run:
-          name: Validate Files and Yaml
-          when: always
-          command: |
-            if [ -n "${INSTANCE_TESTS}" ] || [ $CIRCLE_NODE_INDEX -ne 0 ] ;
-              then
-                echo "Skipping - not running in INSTANCE_TESTS build or unit-tests container"
-                exit 0
-            fi
-
-            # Run flake8 on all excluding Integraions and Scripts (they will be handled in linting)
-            ./Tests/scripts/pyflake.sh *.py
-            find . -maxdepth 1 -type d -not \( -path . -o -path ./Integrations -o -path ./Scripts -o -path ./Beta_Integrations -o -path ./venv \) | xargs ./Tests/scripts/pyflake.sh
-
-            [ -n "${BACKWARD_COMPATIBILITY}" ] && CHECK_BACKWARD="false" || CHECK_BACKWARD="true"
-
-            if [ "${CHECK_BACKWARD}" = "true" ] ;
-              then
-                 demisto-sdk validate -g --post-commit
-
-              else
-                 demisto-sdk validate -g --post-commit --no-backward-comp
-            fi
+#      - run:
+#          name: Validate Files and Yaml
+#          when: always
+#          command: |
+#            if [ -n "${INSTANCE_TESTS}" ] || [ $CIRCLE_NODE_INDEX -ne 0 ] ;
+#              then
+#                echo "Skipping - not running in INSTANCE_TESTS build or unit-tests container"
+#                exit 0
+#            fi
+#
+#            # Run flake8 on all excluding Integraions and Scripts (they will be handled in linting)
+#            ./Tests/scripts/pyflake.sh *.py
+#            find . -maxdepth 1 -type d -not \( -path . -o -path ./Integrations -o -path ./Scripts -o -path ./Beta_Integrations -o -path ./venv \) | xargs ./Tests/scripts/pyflake.sh
+#
+#            [ -n "${BACKWARD_COMPATIBILITY}" ] && CHECK_BACKWARD="false" || CHECK_BACKWARD="true"
+#
+#            if [ "${CHECK_BACKWARD}" = "true" ] ;
+#              then
+#                 demisto-sdk validate -g --post-commit
+#
+#              else
+#                 demisto-sdk validate -g --post-commit --no-backward-comp
+#            fi
       - run:
           name: Secrets
           when: always

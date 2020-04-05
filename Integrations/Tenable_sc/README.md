@@ -1501,7 +1501,7 @@
                 "ID": "1000165",
                 "LastModified": "2018-04-10T19:23:00Z",
                 "Name": "Test CIS",
-                "Owner": "nkeuning@tenable.com",
+                "Owner": "example.gmail.com",
                 "Type": "Policy Compliance Auditing"
             },
             {
