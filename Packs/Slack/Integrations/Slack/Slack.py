@@ -15,7 +15,6 @@ from typing import Tuple, Dict, List, Optional
 # disable unsecure warnings
 requests.packages.urllib3.disable_warnings()
 
-
 ''' CONSTANTS '''
 
 SEVERITY_DICT = {
@@ -25,7 +24,6 @@ SEVERITY_DICT = {
     'High': 3,
     'Critical': 4
 }
-
 
 USER_TAG_EXPRESSION = '<@(.*?)>'
 CHANNEL_TAG_EXPRESSION = '<#(.*?)>'
@@ -42,12 +40,11 @@ ENDPOINT_URL = 'https://oproxy.demisto.ninja/slack-poll'
 POLL_INTERVAL_MINUTES: Dict[Tuple, float] = {
     (0, 15): 1,
     (15, 60): 2,
-    (60, ): 5
+    (60,): 5
 }
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 ''' GLOBALS '''
-
 
 BOT_TOKEN: str
 ACCESS_TOKEN: str
@@ -76,7 +73,7 @@ def get_bot_id() -> str:
     Gets the app bot ID
     :return: The app bot ID
     """
-    response = send_slack_request_sync(CLIENT, 'auth.test')
+    response = send_slack_request_sync(command='auth.test')
 
     return response.get('user_id')
 
@@ -97,7 +94,7 @@ def test_module():
         'channel': channel.get('id')
     }
 
-    send_slack_request_sync(CLIENT, 'chat.postMessage', body=body)
+    send_slack_request_sync(command='chat.postMessage', body=body)
 
     demisto.results('ok')
 
@@ -154,7 +151,7 @@ def get_user_by_name(user_to_search: str, update_context: bool = True) -> dict:
         body = {
             'limit': PAGINATED_COUNT
         }
-        response = send_slack_request_sync(CLIENT, 'users.list', http_verb='GET', body=body)
+        response = send_slack_request_sync(command='users.list', method='GET', body=body)
         while True:
             workspace_users = response['members'] if response and response.get('members', []) else []
             cursor = response.get('response_metadata', {}).get('next_cursor')
@@ -167,7 +164,7 @@ def get_user_by_name(user_to_search: str, update_context: bool = True) -> dict:
                 break
             body = body.copy()
             body.update({'cursor': cursor})
-            response = send_slack_request_sync(CLIENT, 'users.list', http_verb='GET', body=body)
+            response = send_slack_request_sync(command='users.list', method='GET', body=body)
 
         if users_filter:
             user = users_filter[0]
@@ -256,28 +253,34 @@ def set_name_and_icon(body, method):
             body['icon_url'] = BOT_ICON_URL
 
 
-def send_slack_request_sync(client: slack.WebClient, method: str, http_verb: str = 'POST', file_: dict = None,
-                            body: dict = None) -> SlackResponse:
-    """
-    Sends a request to slack API while handling rate limit errors.
-    :param client: The slack client.
-    :param method: The method to use.
-    :param http_verb: The HTTP method to use.
-    :param file_: A file to send.
-    :param body: The request body.
-    :return: The slack API response.
+def send_slack_request_sync(command: str, method: str = 'POST', file_: dict = None, body: dict = None) -> dict:
+    """ Method for sending synchronous slack message
+
+    Args:
+        command(str): command to execute, e.g.: chat.postMessage
+        method(str): POST / GET
+        file_(dict):
+        body(dict): body parameters to send in request
+
+    Returns:
+        dict: slack response
     """
     set_name_and_icon(body, method)
     total_try_time = 0
     while True:
         try:
-            if http_verb == 'POST':
+            if method == 'POST':
                 if file_:
-                    response = client.api_call(method, files={"file": file_}, data=body)
+                    response = SYNC_CLIENT.send_message(url_suffix=command,
+                                                        body=body,
+                                                        files=file_)
                 else:
-                    response = client.api_call(method, json=body)
+                    response = SYNC_CLIENT.send_message(url_suffix=command,
+                                                        body=body)
             else:
-                response = client.api_call(method, http_verb='GET', params=body)
+                response = SYNC_CLIENT.send_message(method='GET',
+                                                    url_suffix=command,
+                                                    body=body)
         except SlackApiError as api_error:
             response = api_error.response
             if 'Retry-After' in response.headers:
@@ -331,6 +334,19 @@ async def send_slack_request_async(client: slack.WebClient, method: str, http_ve
 ''' MIRRORING '''
 
 
+class SyncClient(BaseClient):
+    def send_message(self, method: str = 'POST', url_suffix: str = 'chat.postMessage', body: dict = dict(),
+                     files: dict = dict()):
+        res = self._http_request(method=method,
+                                 url_suffix=url_suffix,
+                                 params={**{
+                                     'as_user': BOT_NAME,
+                                     'icon_url': BOT_ICON_URL,
+                                     'token': BOT_TOKEN
+                                 }, **body})
+        return res
+
+
 async def get_slack_name(slack_id: str, client) -> str:
     """
     Get the slack name of a provided user or channel by its ID
@@ -372,7 +388,7 @@ async def get_slack_name(slack_id: str, client) -> str:
                 'user': slack_id
             }
             user = (await send_slack_request_async(client, 'users.info', http_verb='GET',
-                                                           body=body)).get('user', {})
+                                                   body=body)).get('user', {})
 
         slack_name = user.get('name', '')
 
@@ -411,7 +427,7 @@ def invite_users_to_conversation(conversation_id: str, users_to_invite: list):
                 'channel': conversation_id,
                 'users': user
             }
-            send_slack_request_sync(CHANNEL_CLIENT, 'conversations.invite', body=body)
+            send_slack_request_sync(command='conversations.invite', body=body)
         except SlackApiError as e:
             message = str(e)
             if message.find('cant_invite_self') == -1:
@@ -430,7 +446,7 @@ def kick_users_from_conversation(conversation_id: str, users_to_kick: list):
                 'channel': conversation_id,
                 'user': user
             }
-            send_slack_request_sync(CHANNEL_CLIENT, 'conversations.kick', body=body)
+            send_slack_request_sync(command='conversations.kick', body=body)
         except SlackApiError as e:
             message = str(e)
             if message.find('cant_invite_self') == -1:
@@ -480,9 +496,9 @@ def mirror_investigation():
                 'name': channel_name
             }
             if mirror_to == 'channel':
-                conversation = send_slack_request_sync(CHANNEL_CLIENT, 'channels.create', body=body).get('channel', {})
+                conversation = send_slack_request_sync(command='channels.create', body=body).get('channel', {})
             else:
-                conversation = send_slack_request_sync(CHANNEL_CLIENT, 'groups.create', body=body).get('group', {})
+                conversation = send_slack_request_sync(command='groups.create', body=body).get('group', {})
 
             conversation_name = conversation.get('name')
             conversation_id = conversation.get('id')
@@ -557,7 +573,7 @@ def mirror_investigation():
             'channel': conversation_id,
             'topic': channel_topic
         }
-        send_slack_request_sync(CHANNEL_CLIENT, 'conversations.setTopic', body=body)
+        send_slack_request_sync(command='conversations.setTopic', body=body)
     mirror['channel_topic'] = channel_topic
 
     mirrors.append(mirror)
@@ -568,7 +584,7 @@ def mirror_investigation():
         body = {
             'channel': conversation_id
         }
-        send_slack_request_sync(CHANNEL_CLIENT, 'conversations.leave', body=body)
+        send_slack_request_sync(command='conversations.leave', body=body)
     if send_first_message:
         server_links = demisto.demistoUrls()
         server_link = server_links.get('server')
@@ -579,7 +595,7 @@ def mirror_investigation():
             'channel': conversation_id
         }
 
-        send_slack_request_sync(CLIENT, 'chat.postMessage', body=body)
+        send_slack_request_sync(command='chat.postMessage', body=body)
 
     demisto.results('Investigation mirrored successfully, channel: {}'.format(conversation_name))
 
@@ -679,7 +695,7 @@ def check_for_answers():
                 body = {
                     'user': user_id
                 }
-                user = send_slack_request_sync(CLIENT, 'users.info', http_verb='GET', body=body).get('user', {})
+                user = send_slack_request_sync(command='users.info', method='GET', body=body).get('user', {})
                 users.append(user)
 
             answer_question(actions[0].get('text', {}).get('text'), question, questions,
@@ -721,7 +737,7 @@ def add_info_headers(headers, expiry):
         calling_context = demisto.callingContext.get('context', {})  # type: ignore[attr-defined]
         brand_name = calling_context.get('IntegrationBrand', '')
         instance_name = calling_context.get('IntegrationInstance', '')
-        auth = send_slack_request_sync(CLIENT, 'auth.test')
+        auth = send_slack_request_sync(command='auth.test')
         team_name = auth.get('team', '')
         team_id = auth.get('team_id', '')
         headers['X-Content-Version'] = CONTENT_RELEASE_VERSION
@@ -1206,7 +1222,7 @@ def get_conversation_by_name(conversation_name: str) -> dict:
         'limit': PAGINATED_COUNT
     }
 
-    response = send_slack_request_sync(CLIENT, 'conversations.list', http_verb='GET', body=body)
+    response = send_slack_request_sync(command='conversations.list', method='GET', body=body)
     conversation: dict = {}
     while True:
         conversations = response['channels'] if response and response.get('channels') else []
@@ -1218,7 +1234,7 @@ def get_conversation_by_name(conversation_name: str) -> dict:
             break
         body = body.copy()
         body.update({'cursor': cursor})
-        response = send_slack_request_sync(CLIENT, 'conversations.list', http_verb='GET', body=body)
+        response = send_slack_request_sync(command='conversations.list', method='GET', body=body)
 
     if conversation_filter:
         conversation = conversation_filter[0]
@@ -1455,7 +1471,7 @@ def send_message_to_destinations(destinations: list, message: str, thread_id: st
 
     for destination in destinations:
         body['channel'] = destination
-        response = send_slack_request_sync(CLIENT, 'chat.postMessage', body=body)
+        response = send_slack_request_sync(command='chat.postMessage', body=body)
     return response
 
 
@@ -1504,7 +1520,7 @@ def send_file_to_destinations(destinations: list, file: dict, thread_id: str) ->
         if thread_id:
             body['thread_ts'] = thread_id
 
-        response = send_slack_request_sync(CLIENT, 'files.upload', file_=file['data'], body=body)
+        response = send_slack_request_sync(command='files.upload', file_=file['data'], body=body)
 
     return response
 
@@ -1546,7 +1562,7 @@ def slack_send_request(to: str, channel: str, group: str, entry: str = '', ignor
             body = {
                 'user': user.get('id')
             }
-            im = send_slack_request_sync(CLIENT, 'im.open', body=body)
+            im = send_slack_request_sync(command='im.open', body=body)
             destinations.append(im.get('channel', {}).get('id'))
     if channel or group:
         if not destinations:
@@ -1617,7 +1633,7 @@ def set_channel_topic():
         'channel': channel_id,
         'topic': topic
     }
-    send_slack_request_sync(CHANNEL_CLIENT, 'conversations.setTopic', body=body)
+    send_slack_request_sync(command='conversations.setTopic', body=body)
 
     demisto.results('Topic successfully set.')
 
@@ -1654,7 +1670,7 @@ def rename_channel():
         'channel': channel_id,
         'name': new_name
     }
-    send_slack_request_sync(CHANNEL_CLIENT, 'conversations.rename', body=body)
+    send_slack_request_sync(command='conversations.rename', body=body)
 
     demisto.results('Channel renamed successfully.')
 
@@ -1691,7 +1707,7 @@ def close_channel():
     body = {
         'channel': channel_id
     }
-    send_slack_request_sync(CHANNEL_CLIENT, 'conversations.archive', body=body)
+    send_slack_request_sync(command='conversations.archive', body=body)
 
     demisto.results('Channel successfully archived.')
 
@@ -1709,9 +1725,9 @@ def create_channel():
         'name': channel_name
     }
     if channel_type != 'private':
-        conversation = send_slack_request_sync(CHANNEL_CLIENT, 'channels.create', body=body).get('channel', {})
+        conversation = send_slack_request_sync(command='channels.create', body=body).get('channel', {})
     else:
-        conversation = send_slack_request_sync(CHANNEL_CLIENT, 'groups.create', body=body).get('group', {})
+        conversation = send_slack_request_sync(command='groups.create', body=body).get('group', {})
 
     if users:
         slack_users = search_slack_users(users)
@@ -1721,7 +1737,7 @@ def create_channel():
             'channel': conversation.get('id'),
             'topic': topic
         }
-        send_slack_request_sync(CHANNEL_CLIENT, 'conversations.setTopic', body=body)
+        send_slack_request_sync(command='conversations.setTopic', body=body)
 
     demisto.results('Successfully created the channel {}.'.format(conversation.get('name')))
 
@@ -1815,7 +1831,7 @@ def init_globals():
     """
     Initializes global variables according to the integration parameters
     """
-    global BOT_TOKEN, ACCESS_TOKEN, PROXY_URL, PROXIES, DEDICATED_CHANNEL, CLIENT, CHANNEL_CLIENT
+    global BOT_TOKEN, ACCESS_TOKEN, PROXY_URL, PROXIES, DEDICATED_CHANNEL, CLIENT, CHANNEL_CLIENT, SYNC_CLIENT
     global SEVERITY_THRESHOLD, ALLOW_INCIDENTS, NOTIFY_INCIDENTS, INCIDENT_TYPE, VERIFY_CERT
     global BOT_NAME, BOT_ICON_URL, MAX_LIMIT_TIME, PAGINATED_COUNT, SSL_CONTEXT
 
@@ -1836,6 +1852,9 @@ def init_globals():
     DEDICATED_CHANNEL = demisto.params().get('incidentNotificationChannel')
     CLIENT = slack.WebClient(token=BOT_TOKEN, proxy=PROXY_URL, ssl=SSL_CONTEXT)
     CHANNEL_CLIENT = slack.WebClient(token=ACCESS_TOKEN, proxy=PROXY_URL, ssl=SSL_CONTEXT)
+    SYNC_CLIENT = SyncClient(base_url='https://www.slack.com/api/',
+                             verify=demisto.params().get('unsecure'),
+                             proxy=proxy_url)
     SEVERITY_THRESHOLD = SEVERITY_DICT.get(demisto.params().get('min_severity', 'Low'), 1)
     ALLOW_INCIDENTS = demisto.params().get('allow_incidents', False)
     NOTIFY_INCIDENTS = demisto.params().get('notify_incidents', True)
