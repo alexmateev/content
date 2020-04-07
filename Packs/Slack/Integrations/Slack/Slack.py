@@ -496,9 +496,9 @@ def mirror_investigation():
                 'name': channel_name
             }
             if mirror_to == 'channel':
-                conversation = send_slack_request_sync(command='channels.create', body=body).get('channel', {})
+                conversation = send_slack_request_sync(command='channels.create', body=body)
             else:
-                conversation = send_slack_request_sync(command='groups.create', body=body).get('group', {})
+                conversation = send_slack_request_sync(command='groups.create', body=body)
 
             conversation_name = conversation.get('name')
             conversation_id = conversation.get('id')
